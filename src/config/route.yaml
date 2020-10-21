@@ -1,0 +1,6 @@
+routes:
+  named_routes:
+    path: '/'
+    name: 'index'
+    controller: StartController
+    call: index

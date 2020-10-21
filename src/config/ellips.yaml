@@ -1,0 +1,5 @@
+ellips:
+  controllers:
+    path: 'src/controller'
+  public:
+    path: 'public'

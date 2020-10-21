@@ -1,0 +1,23 @@
+{
+  "name": "ellips",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "js-yaml": "^3.14.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "nodemon app/boot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mutari/Ellips.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mutari/Ellips/issues"
+  },
+  "homepage": "https://github.com/mutari/Ellips#readme"
+}
