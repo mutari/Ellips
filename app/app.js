@@ -1,13 +1,13 @@
-const { triggerAsyncId } = require('async_hooks');
-const { settings } = require('cluster');
 const   http = require('http'),
         url = require('url'),
         fs = require('fs'),
         path = require('path');
 
-const controllerManager = require('./controllerManager');
-const settingManager = require('./settingManager');
-const yamlManager = require('./yamlManager');
+const controllerManager = require('./Managers/controllerManager');
+const settingManager = require('./Managers/settingManager');
+const yamlManager = require('./Managers/yamlManager');
+
+const Routing = require('./Routing');
 
 class app 
 {
@@ -18,14 +18,39 @@ class app
      */
     constructor() 
     {
-        this.controller = new controllerManager();
 
-        this.httpServer = http.createServer((request, response) => {
-            console.log("sombody connected");
-        });
-
+        /**
+         * load all settings/config from yaml files
+         */
         yamlManager.loadAll(__dirname + '/../src/config').then(() => {
-            console.log(settingManager.setting)
+
+            /**
+             * set up all controllers
+             */
+            this.controller = new controllerManager();
+
+            /**
+             * initing routing
+             */
+            this.routing = new Routing();
+
+            /**
+             * start http server
+             */
+            this.httpServer = http.createServer((request, response) => {
+
+                let route = this.routing.routing(request.url, request.method);
+                route.request = request;
+                route.response = response;
+                if(route.path == '*')
+                    return this.controller.call(route);
+
+                return this.controller.call(route);
+
+            }).listen(settingManager.getSettingJSON('ellips').port);
+
+            console.log('Server started and running!')
+
         })
     }
 

@@ -12,8 +12,8 @@ class yamlManager
 {
     static async loadAll(path)
     {
-        await this.storeSettingsForFile(path + '/route.yaml', 'routes');
-        await this.storeSettingsForFile(path + '/ellips.yaml', 'ellips');
+        await this.storeSettingsForFile(path + '/ellips.yaml');
+        await this.storeSettingsForFile(path + '/routes.yaml');
     }
 
     /**
@@ -27,10 +27,17 @@ class yamlManager
         return data;
     }
 
-    static async storeSettingsForFile(path, name)
+    /**
+     * loades yaml config file and stores ass json in settingManager
+     * @param {string} path path of yaml config file
+     * @param {string} name name of yaml head
+     */
+    static async storeSettingsForFile(path)
     {
         let settingsJSON = await this.loadYaml(path);
-        settingManager.addSettingJSON(name, settingsJSON[name]);
+        Object.keys(settingsJSON).forEach(element => {
+            settingManager.addSettingJSON(element, settingsJSON[element]);
+        });
     }
 }
 module.exports = yamlManager;
