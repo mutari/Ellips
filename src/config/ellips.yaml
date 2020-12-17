@@ -1,6 +1,0 @@
-ellips:
-  controllers:
-    path: 'src/controller'
-  public:
-    path: 'public'
-  port: 8888

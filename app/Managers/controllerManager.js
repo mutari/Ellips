@@ -21,7 +21,7 @@ class controllerManager
     doFunctions(controller, route)
     {   
         //console.log(Object.getOwnPropertyNames(controller.controller.prototype))
-        controller.controller.prototype[route.call](route.request, route.response);
+        controller.controller.prototype[route.call]({ request: route.request, response: route.response, id: '12948192479' });
     }
 
     /**

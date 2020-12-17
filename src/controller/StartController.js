@@ -1,12 +1,12 @@
 class StartController
 {
 
-    index(request, response)
+    index({ request, response })
     {
         response.end('hello world');
     }
 
-    start(request, response)
+    start({ request, response })
     {
         response.end('hello start world')
     }

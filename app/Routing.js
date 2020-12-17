@@ -13,9 +13,8 @@ class Routing
      * @param {string} method request method
      */
     routing(path, method) {
-        console.log("routes:", this.routeManager.routes)
         path = path.split('?')[0];
-        for(var route = 0; route < this.routeManager.routes.length; route++) 
+        for(let route = 0; route < this.routeManager.routes.length; route++)
             if(this.matchRoute(path, this.routeManager.routes[route].path) && this.routeManager.routes[route].method == method) 
                 return this.routeManager.routes[route];
         return this.routeManager.routes[0];

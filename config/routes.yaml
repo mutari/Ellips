@@ -1,0 +1,19 @@
+routes: 
+  error:
+    path: '*'
+    controller: IndexController
+    method: ALL
+    call: error
+
+  index:
+    path: '/'
+    controller: IndexController
+    method: GET
+    call: index
+
+  start:
+    path: '/start'
+    controller: StartController
+    method: GET
+    call: start
+
